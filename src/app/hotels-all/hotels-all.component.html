@@ -1,0 +1,25 @@
+<p>
+  hotels-all works!
+</p>
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Standard</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hotel of hotels">
+          <td>{{ hotel.id }}</td>
+          <td>{{ hotel.name }}</td>
+          <td>{{ hotel.standard }}</td>
+          <td>{{ hotel.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
