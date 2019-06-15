@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { HotelService } from './services/hotel.service';
 import { TripsComponent } from './trips/trips.component';
+import { CascadeSearchComponent } from './cascade-search/cascade-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContinentsComponent,
     HotelsAllComponent,
-    TripsComponent
+    TripsComponent,
+    CascadeSearchComponent
   ],
   imports: [
     BrowserModule,

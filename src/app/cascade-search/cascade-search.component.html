@@ -1,0 +1,21 @@
+<span class="heroes">
+  <label>Continents</label>
+  <select [(ngModel)]="selectedContinent.continent_id" (change)="onSelectContinent($event.target.value)"> 
+    <option value="0">--Select-- </option>
+    <option *ngFor="let continent of continents" value={{continent.continent_id}}>{{continent.name}}</option>
+  </select>
+</span>
+<span class="heroes">
+  <label>Couintries</label>
+  <select [(ngModel)]="selectedCountry.id" (change)="onSelectCountry($event.target.value)"> 
+    <option value="0">--Select-- </option>
+    <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+  </select>
+</span>
+<div >{{result}}
+  <!-- <li *ngFor = "let city of cities" >
+  <span class="badge">{{city.id}}</span>{{city.name}}
+  </li> -->
+</div>
+
+
