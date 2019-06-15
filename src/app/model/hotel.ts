@@ -1,6 +1,8 @@
+import { Trip } from './trip';
+
 export class Hotel {
-    id: string;
-    name: string;
-    standard: string;
-    description: string;
+    id?: number;
+    name?: string;
+    standard?: string;
+    description?: string;
 }

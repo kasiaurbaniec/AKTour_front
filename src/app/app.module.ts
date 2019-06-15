@@ -7,12 +7,14 @@ import { HotelsAllComponent } from './hotels-all/hotels-all.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { HotelService } from './services/hotel.service';
+import { TripsComponent } from './trips/trips.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContinentsComponent,
-    HotelsAllComponent
+    HotelsAllComponent,
+    TripsComponent
   ],
   imports: [
     BrowserModule,
