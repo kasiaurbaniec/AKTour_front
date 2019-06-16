@@ -10,9 +10,11 @@ import { Observable } from 'rxjs';
 export class CascadeSearchService {
   private continentsUrl: string;
   private countriesUrl: string;
+  private countriesByContinentsNameUrl: string;
   constructor(private http: HttpClient) {
     this.continentsUrl = 'http://localhost:8081/continents';
     this.countriesUrl = 'http://localhost:8081/country';
+    this.countriesByContinentsNameUrl = 'http://localhost:8081/country/byContinent/';
    }
 
   public getContinents(): Observable<Continent[]>{
@@ -21,7 +23,7 @@ export class CascadeSearchService {
   public getCountries():Observable<Country[]>{
     return this.http.get<Country[]>(this.countriesUrl);
   }
-  public getContinentIdFromCountry(){
-    
+  public getCountriesByContinentName(name: String):Observable<Country[]>{
+    return this.http.get<Country[]>(this.countriesByContinentsNameUrl+name);
   }
 }

@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 export class CascadeSearchComponent implements OnInit {
   selectedContinent: Continent = {continent_id: 1, name:"Europe"};
-  selectedCountry: Country=     {id: 1,name: "Poland", continent:{continent_id:1, name:"Europe"}};
+  selectedCountry: Country=     {id: 1,name: "Poland"};
   continents: Continent[];
   countries: Country[];
   result:string;
@@ -18,14 +18,12 @@ export class CascadeSearchComponent implements OnInit {
 
   ngOnInit() {
     this.cascadeSearchService.getContinents().subscribe(data=>this.continents=data);
-    this.onSelectContinent(this.selectedContinent.continent_id);
+    this.onSelectContinent(this.selectedContinent.name);
   
   }
 
-  onSelectContinent(continentId){
-    this.cascadeSearchService.getCountries()
-    .pipe(filter(()=>continentId == continentId))
-    .subscribe(data=>this.countries=data);
+  onSelectContinent(continentName){
+    this.cascadeSearchService.getCountriesByContinentName(continentName).subscribe(data=>this.countries=data);
     this.result="tutaj będą wyniki filtrowania kontynentów";
     this.onSelectCountry(this.selectedCountry.id);
   }
