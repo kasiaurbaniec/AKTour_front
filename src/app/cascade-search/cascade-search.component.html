@@ -13,6 +13,28 @@
   </select>
 </span>
 <div >{{result}}
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Daparture Date</th>
+            <th scope="col">Return Date</th>
+            <th scope="col">Type Of Board</th>
+            <th scope="col">Hotel</th>
+            <th scope="col">Price - Adult</th>
+            <th scope="col">Promotion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trip of tripsFiltered">
+            <td>{{ trip.departureDate }}</td>
+            <td>{{ trip.returnDate }}</td>
+            <td>{{ trip.boardType }}</td>
+            <td>{{ trip.hotel.name }}</td>
+            <td>{{ trip.adultPrice }}</td>
+            <td>{{ trip.promoPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
   <!-- <li *ngFor = "let city of cities" >
   <span class="badge">{{city.id}}</span>{{city.name}}
   </li> -->
