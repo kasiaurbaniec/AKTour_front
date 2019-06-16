@@ -24,10 +24,10 @@ export class CascadeSearchComponent implements OnInit {
 
   onSelectContinent(continentId){
     this.cascadeSearchService.getCountries()
-    .pipe(filter((item)=>item.continent.continent_id == continentId))
+    .pipe(filter(()=>continentId == continentId))
     .subscribe(data=>this.countries=data);
     this.result="tutaj będą wyniki filtrowania kontynentów";
-    // this.onSelectCountry(this.selectedCountry.id);
+    this.onSelectCountry(this.selectedCountry.id);
   }
 
   onSelectCountry(countryId){
