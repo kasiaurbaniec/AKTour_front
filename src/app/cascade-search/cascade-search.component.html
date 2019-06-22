@@ -1,21 +1,21 @@
-<span class="heroes">
+<span >
   <label>Continents</label>
   <select [(ngModel)]="selectedContinent.name" (change)="onSelectContinent($event.target.value)"> 
-    <option value="0">--Select-- </option>
+    <option value="Select">Select </option>
     <option *ngFor="let continent of continents" value={{continent.name}}>{{continent.name}}</option>
   </select>
 </span>
-<span class="heroes">
+<span >
   <label>Couintries</label>
-  <select [(ngModel)]="selectedCountry.nama" (change)="onSelectCountry($event.target.value)"> 
-    <option value="0">--Select-- </option>
+  <select enabled="continentHasCountry" [(ngModel)]="selectedCountry.name" (change)="onSelectCountry($event.target.value)"> 
+    <option value="Select">Select</option>
     <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
   </select>
 </span>
-<div >{{result}}
+<div >
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-          <tr>
+          <tr *ngIf="hasResult; else responseText">
             <th scope="col">Daparture Date</th>
             <th scope="col">Return Date</th>
             <th scope="col">Type Of Board</th>
@@ -35,6 +35,7 @@
           </tr>
         </tbody>
       </table>
+      <ng-template #responseText>No trips to display</ng-template>
   <!-- <li *ngFor = "let city of cities" >
   <span class="badge">{{city.id}}</span>{{city.name}}
   </li> -->
