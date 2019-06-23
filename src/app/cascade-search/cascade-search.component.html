@@ -6,10 +6,17 @@
   </select>
 </span>
 <span >
-  <label>Couintries</label>
+  <label>Countries</label>
   <select enabled="continentHasCountry" [(ngModel)]="selectedCountry.name" (change)="onSelectCountry($event.target.value)"> 
     <option value="Select">Select</option>
     <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
+  </select>
+</span>
+<span >
+  <label>Cities</label>
+  <select enabled="continentHasCountry" [(ngModel)]="selectedCity.name" (change)="onSelectCity($event.target.value)">
+    <option value="Select">Select</option>
+    <option *ngFor="let city of cities" value={{city.name}}>{{city.name}}</option>
   </select>
 </span>
 <div >
