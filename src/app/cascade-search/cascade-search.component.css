@@ -1,0 +1,12 @@
+.menu {
+    background:rgba(193,212,230,1);;
+    height: 4rem;
+  }
+  .select{
+    max-width: 2000px;
+    padding: 1%;
+    position: relative;
+    display: inline;
+  }
+
+
