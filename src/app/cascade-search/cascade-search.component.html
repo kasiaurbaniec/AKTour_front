@@ -1,24 +1,32 @@
-<span >
+
+<nav class="menu">
+
+
   <label>Continents</label>
-  <select [(ngModel)]="selectedContinent.name" (change)="onSelectContinent($event.target.value)"> 
+      <ol class="select">
+    <select [(ngModel)]="selectedContinent.name" (change)="onSelectContinent($event.target.value)"> 
     <option value="Select">Select </option>
     <option *ngFor="let continent of continents" value={{continent.name}}>{{continent.name}}</option>
-  </select>
-</span>
-<span >
+</select>
+
   <label>Countries</label>
+  <ol class="select">
   <select enabled="continentHasCountry" [(ngModel)]="selectedCountry.name" (change)="onSelectCountry($event.target.value)"> 
     <option value="Select">Select</option>
     <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
   </select>
-</span>
-<span >
+  
+
+
   <label>Cities</label>
-  <select enabled="continentHasCountry" [(ngModel)]="selectedCity.name" (change)="onSelectCity($event.target.value)">
+  <ol class="select">
+   <select enabled="continentHasCountry" [(ngModel)]="selectedCity.name" (change)="onSelectCity($event.target.value)">
     <option value="Select">Select</option>
     <option *ngFor="let city of cities" value={{city.name}}>{{city.name}}</option>
   </select>
-</span>
+
+ 
+
 <div >
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -43,9 +51,14 @@
         </tbody>
       </table>
       <ng-template #responseText>No trips to display</ng-template>
+      
   <!-- <li *ngFor = "let city of cities" >
   <span class="badge">{{city.id}}</span>{{city.name}}
   </li> -->
 </div>
 
+</ol>
+</ol>
+</ol>
+</nav>
 
