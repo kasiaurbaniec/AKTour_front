@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" #addTripForm="ngForm">
+<form (ngSubmit)="onSubmit(addTripForm)" #addTripForm="ngForm">
 <div style="display: inline-grid;">
   <label for="hotel"> Hotel</label>
   <input [(ngModel)]="trip.hotel" #hotel="ngModel" id="hotel" name="hotel" required >
