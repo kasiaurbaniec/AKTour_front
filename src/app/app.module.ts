@@ -11,6 +11,7 @@ import { CascadeSearchComponent } from './cascade-search/cascade-search.componen
 import { HeaderComponent } from './header/header.component';
 import { DropdownMenuComponent } from './dropdown-menu/dropdown-menu.component';
 import { ImgSliderComponent } from './img-slider/img-slider.component';
+import { AddTripComponent } from './add-trip/add-trip.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ImgSliderComponent } from './img-slider/img-slider.component';
     CascadeSearchComponent,
     HeaderComponent,
     DropdownMenuComponent,
-    ImgSliderComponent
+    ImgSliderComponent,
+    AddTripComponent
   ],
   imports: [
     BrowserModule,

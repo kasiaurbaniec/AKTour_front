@@ -5,7 +5,9 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Daparture Date</th>
+          <th scope="col">Home Airport</th>
           <th scope="col">Return Date</th>
+          <th scope="col">Destination Airport</th>
           <th scope="col">Days</th>
           <th scope="col">Type Of Board</th>
           <th scope="col">Hotel</th>
@@ -19,7 +21,9 @@
       <tbody>
         <tr *ngFor="let trip of trips">
           <td>{{ trip.departureDate }}</td>
+          <td *ngIf="trip.homeAirport!=null; else noAirport"> {{ trip.homeAirport.name }}</td>
           <td>{{ trip.returnDate }}</td>
+          <td *ngIf="trip.homeAirport!=null; else noAirport">{{ trip.destinAirport.name }}</td>
           <td>{{ trip.numberOfDays }}</td>
           <td>{{ trip.boardType }}</td>
           <td>{{ trip.hotel.name }}</td>
@@ -32,4 +36,5 @@
       </tbody>
     </table>
   </div>
+  <ng-template #noAirport>Local trip</ng-template>
 </div>

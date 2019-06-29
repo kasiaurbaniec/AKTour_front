@@ -1,0 +1,29 @@
+<form (ngSubmit)="onSubmit()" #addTripForm="ngForm">
+<div style="display: inline-grid;">
+  <label for="hotel"> Hotel</label>
+  <input [(ngModel)]="trip.hotel" #hotel="ngModel" id="hotel" name="hotel" required >
+  <label for="boardType"> Board type</label>
+  <input [(ngModel)]="trip.boardType" #boardType="ngModel" id="boardType" name="boardType" required >
+  <label for="departureDate"> Departure date </label>
+  <input [(ngModel)]="trip.departureDate" #departureDate="ngModel" id="departureDate" name="departureDate" required >
+  <label for="homeAirport"> Home airport </label>
+  <input [(ngModel)]="trip.homeAirport" #homeAirport="ngModel" id="homeAirport" name="homeAirport" required >
+  <label for="returnDate"> Return date </label>
+  <input [(ngModel)]="trip.returnDate" #returnDate="ngModel" id="returnDate" name="returnDate" required >
+  <label for="destinAirport"> Destination airport </label>
+  <input [(ngModel)]="trip.destinAirport" #destinAirport="ngModel" id="destinAirport" name="destinAirport" required >
+  <label for="numberOfDays"> Number of days </label>
+  <input type="number" [(ngModel)]="trip.numberOfDays" #numberOfDays="ngModel" id="numberOfDays" name="numberOfDays" required >
+  <label for="adultPrice"> Price for an adult </label>
+  <input type="number" [(ngModel)]="trip.adultPrice" #adultPrice="ngModel" id="adultPrice" name="adultPrice" required >
+  <label for="childrenPrice"> Price for a child </label>
+  <input type="number" [(ngModel)]="trip.childrenPrice" #childrenPrice="ngModel" id="childrenPrice" name="childrenPrice" required >
+  <label for="promoPrice"> Price in promotion </label>
+  <input type="number" [(ngModel)]="trip.promoPrice" #promoPrice="ngModel" id="promoPrice" name="promoPrice" required >
+  <label for="adultVacancy"> Vacancy for adults </label>
+  <input type="number" [(ngModel)]="trip.adultVacancy" #adultVacancy="ngModel" id="adultVacancy" name="adultVacancy" required >
+  <label for="childrenVacancy"> Vacancy for children </label>
+  <input type="number" [(ngModel)]="trip.childrenVacancy" #childrenVacancy="ngModel" id="childrenVacancy" name="childrenVacancy" required >
+  <button type="submit"  > ADD TRIP </button>
+</div>
+</form>
