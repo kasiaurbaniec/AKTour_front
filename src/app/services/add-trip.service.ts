@@ -10,9 +10,10 @@ export class AddTripService {
   private addNewTripUrl: string;
 
   constructor(private http: HttpClient) {
-    this.addNewTripUrl = "http://localhost:8081/trips";
+    this.addNewTripUrl = 'http://localhost:8081/trips';
   }
-  // public addTrip():Observable<Trip>{
-  //   return this.http.post<Trip>(this.addNewTripUrl)
-  // }
+
+  public addTrip(trip: Trip):Observable<Trip>{
+    return this.http.post<Trip>(this.addNewTripUrl, trip);
+  }
 }

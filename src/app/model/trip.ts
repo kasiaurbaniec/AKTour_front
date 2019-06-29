@@ -1,4 +1,5 @@
 import { Hotel } from './hotel';
+import {Airport} from "./airport";
 
 export class Trip {
     id?: number;
@@ -12,5 +13,7 @@ export class Trip {
     adultVacancy?: number;
     childrenVacancy?: number;
     hotel?: Hotel;
+    homeAirport?: Airport;
+    destinAirport?: Airport;
 
 }
