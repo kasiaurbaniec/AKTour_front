@@ -1,0 +1,36 @@
+body {
+  margin: 2em;
+}
+
+.container {
+  background-color: grey;
+  padding: 1em;
+  font-size: medium;
+  color: #FFFFFF;
+}
+
+label {
+  font-weight: bold;
+  font-size: medium;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+h1 {
+  padding: 15px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+select{
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+

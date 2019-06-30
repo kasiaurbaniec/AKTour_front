@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AddTripService} from "../services/add-trip.service";
 import {Trip} from "../model/trip";
-import {FormGroup} from "@angular/forms";
+import {Hotel} from "../model/hotel";
+import {Airport} from "../model/airport";
+
 
 @Component({
   selector: 'app-add-trip',
@@ -10,19 +12,28 @@ import {FormGroup} from "@angular/forms";
 })
 export class AddTripComponent implements OnInit {
   trip = new Trip();
+  hotels: Hotel[];
+  airports: Airport[];
 
   constructor(
     private addTripService: AddTripService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
+    this.addTripService.getHotels().subscribe(data => this.hotels = data);
+    this.addTripService.getAirports().subscribe(data => this.airports = data);
   }
 
-
-  public onSubmit() {
-    this.addTripService.addTrip(this.trip).subscribe(data=>this.trip=data);
+  public onSubmit(addTripForm) {
+    this.addTripService.addTrip(this.trip).subscribe(data => this.trip = data);
     console.log(this.trip);
+    console.log(addTripForm);
   }
+
+  public countDays(dateFrom: Date, dateTo: Date){
+
+  }
+  // public isDatesOrderValid(dateFrom: Date, dateTo: Date):boolean{
+  //   return dateFrom.getMilliseconds()<dateTo.getMilliseconds();
+  // }
 }
