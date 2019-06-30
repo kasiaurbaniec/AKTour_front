@@ -1,64 +1,60 @@
-
 <nav class="menu">
 
-
-  <label>Continents</label>
+  <div class="container">
+    <div class="row">
+      <label>Continents</label>
       <ol class="select">
-    <select [(ngModel)]="selectedContinent.name" (change)="onSelectContinent($event.target.value)"> 
-    <option value="Select">Select </option>
-    <option *ngFor="let continent of continents" value={{continent.name}}>{{continent.name}}</option>
-</select>
+        <select [(ngModel)]="selectedContinent.name" class="form-control"
+                (change)="onSelectContinent($event.target.value)">
+          <option value="Select">Select</option>
+          <option *ngFor="let continent of continents" value={{continent.name}}>{{continent.name}}</option>
+        </select>
+      </ol>
+      <label>Countries</label>
+      <ol class="select">
+        <select enabled="continentHasCountry" [(ngModel)]="selectedCountry.name" class="form-control"
+                (change)="onSelectCountry($event.target.value)">
+          <option value="Select">Select</option>
+          <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
+        </select>
+      </ol>
 
-  <label>Countries</label>
-  <ol class="select">
-  <select enabled="continentHasCountry" [(ngModel)]="selectedCountry.name" (change)="onSelectCountry($event.target.value)"> 
-    <option value="Select">Select</option>
-    <option *ngFor="let country of countries" value={{country.name}}>{{country.name}}</option>
-  </select>
-  
+      <label>Cities</label>
+      <ol class="select">
+        <select enabled="continentHasCountry" [(ngModel)]="selectedCity.name" class="form-control"
+                (change)="onSelectCity($event.target.value)">
+          <option value="Select">Select</option>
+          <option *ngFor="let city of cities" value={{city.name}}>{{city.name}}</option>
+        </select>
+      </ol>
+    </div>
 
-
-  <label>Cities</label>
-  <ol class="select">
-   <select enabled="continentHasCountry" [(ngModel)]="selectedCity.name" (change)="onSelectCity($event.target.value)">
-    <option value="Select">Select</option>
-    <option *ngFor="let city of cities" value={{city.name}}>{{city.name}}</option>
-  </select>
-
- 
-
-<div >
-    <table class="table table-bordered table-striped">
+    <div>
+      <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-          <tr *ngIf="hasResult; else responseText">
-            <th scope="col">Daparture Date</th>
-            <th scope="col">Return Date</th>
-            <th scope="col">Type Of Board</th>
-            <th scope="col">Hotel</th>
-            <th scope="col">Price - Adult</th>
-            <th scope="col">Promotion</th>
-          </tr>
+        <tr *ngIf="tripsFiltered.length>0; else responseText">
+          <th scope="col">Daparture Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Type Of Board</th>
+          <th scope="col">Hotel</th>
+          <th scope="col">Price - Adult</th>
+          <th scope="col">Promotion</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let trip of tripsFiltered">
-            <td>{{ trip.departureDate }}</td>
-            <td>{{ trip.returnDate }}</td>
-            <td>{{ trip.boardType }}</td>
-            <td>{{ trip.hotel.name }}</td>
-            <td>{{ trip.adultPrice }}</td>
-            <td>{{ trip.promoPrice }}</td>
-          </tr>
+        <tr *ngFor="let trip of tripsFiltered">
+          <td>{{ trip.departureDate }}</td>
+          <td>{{ trip.returnDate }}</td>
+          <td>{{ trip.boardType }}</td>
+          <td>{{ trip.hotel.name }}</td>
+          <td>{{ trip.adultPrice }}</td>
+          <td>{{ trip.promoPrice }}</td>
+        </tr>
         </tbody>
       </table>
       <ng-template #responseText>No trips to display</ng-template>
-      
-  <!-- <li *ngFor = "let city of cities" >
-  <span class="badge">{{city.id}}</span>{{city.name}}
-  </li> -->
-</div>
+    </div>
 
-</ol>
-</ol>
-</ol>
+  </div>
 </nav>
 
