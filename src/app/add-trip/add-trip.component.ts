@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AddTripService} from "../services/add-trip.service";
-import {Trip} from "../model/trip";
 import {Hotel} from "../model/hotel";
 import {Airport} from "../model/airport";
+import {FormControl, FormGroup} from "@angular/forms";
+import {Trip} from "../model/trip";
 
 
 @Component({
@@ -11,29 +12,54 @@ import {Airport} from "../model/airport";
   styleUrls: ['./add-trip.component.css']
 })
 export class AddTripComponent implements OnInit {
-  trip = new Trip();
+  addTripForm: FormGroup;
   hotels: Hotel[];
   airports: Airport[];
+  trip=new Trip();
+  public minDepartureDate = new Date(Date() + 'UTC');
+  public minReturnDate = this.minDepartureDate;
+
 
   constructor(
-    private addTripService: AddTripService
-  ) {}
+    private addTripService: AddTripService) {
+  }
 
   ngOnInit() {
     this.addTripService.getHotels().subscribe(data => this.hotels = data);
     this.addTripService.getAirports().subscribe(data => this.airports = data);
+    this.addTripForm = new FormGroup({
+      boardType: new FormControl(null),
+      hotel: new FormControl(null),
+      departureDate: new FormControl(null),
+      returnDate: new FormControl(null),
+      numberOfDays: new FormControl(null),
+      homeAirport: new FormControl(null),
+      destinAirport: new FormControl(null),
+      adultPrice: new FormControl(null),
+      childrenPrice: new FormControl(null),
+      promoPrice: new FormControl(null),
+      adultVacancy: new FormControl(null),
+      childrenVacancy: new FormControl(null)
+    });
   }
 
-  public onSubmit(addTripForm) {
+  public onSubmit() {
+    console.log(this.addTripForm);
+    this.trip.boardType = this.addTripForm.value.boardType;
+    this.trip.hotel = this.addTripForm.value.hotel;
+    this.trip.departureDate = this.addTripForm.value.departureDate;
+    this.trip.returnDate = this.addTripForm.value.returnDate;
+    this.trip.numberOfDays = this.addTripForm.value.numberOfDays;
+    this.trip.homeAirport = this.addTripForm.value.homeAirport;
+    this.trip.destinAirport = this.addTripForm.value.destinAirport;
+    this.trip.adultPrice = this.addTripForm.value.adultPrice;
+    this.trip.childrenPrice = this.addTripForm.value.childrenPrice;
+    this.trip.promoPrice = this.addTripForm.value.promoPrice;
+    this.trip.adultVacancy = this.addTripForm.value.adultVacancy;
+    this.trip.childrenVacancy = this.addTripForm.value.childrenVacancy;
     this.addTripService.addTrip(this.trip).subscribe(data => this.trip = data);
     console.log(this.trip);
-    console.log(addTripForm);
   }
 
-  public countDays(dateFrom: Date, dateTo: Date){
-
-  }
-  // public isDatesOrderValid(dateFrom: Date, dateTo: Date):boolean{
-  //   return dateFrom.getMilliseconds()<dateTo.getMilliseconds();
-  // }
 }
+

@@ -1,9 +1,7 @@
 <nav class="menu"></nav>
 
 <h1>Add new trip</h1>
-<!--<div class="input-group mb-3">-->
-<!--<div class="input-group-prepend">-->
-<form (ngSubmit)="onSubmit(addTripForm)" #addTripForm="ngForm">
+<form [formGroup]="addTripForm" (ngSubmit)="onSubmit()">
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -11,28 +9,28 @@
       </div>
       <div class="col-sm-4">
         <div class="col-sm-12">
-          <input class="form-check-input" type="radio" [(ngModel)]="trip.boardType" [value]="'BB'" #boardType="ngModel" id="boardType"
-                 name="boardType" required> Bed and Breakfast
+          <input class="form-check-input" type="radio" [value]="'BB'" id="boardType"
+                 formControlName="boardType"> Bed and Breakfast
         </div>
         <div class="col-sm-12">
-          <input class="form-check-input" type="radio" [(ngModel)]="trip.boardType" [value]="'HB'" #boardType="ngModel" id="boardType"
-                 name="boardType" required> Half Board <em>Breakfast and Dinner normally</em>
+          <input class="form-check-input" type="radio" [value]="'HB'" id="boardType"
+                 formControlName="boardType"> Half Board <em>Breakfast and Dinner normally</em>
         </div>
         <div class="col-sm-12">
-          <input class="form-check-input" type="radio" [(ngModel)]="trip.boardType" [value]="'FB'" #boardType="ngModel" id="boardType"
-                 name="boardType" required> Full Board <em>Beakfast, Lunch and Dinner</em>
+          <input class="form-check-input" type="radio" [value]="'FB'" id="boardType"
+                 formControlName="boardType"> Full Board <em>Beakfast, Lunch and Dinner</em>
         </div>
         <div class="col-sm-12">
-          <input class="form-check-input" type="radio" [(ngModel)]="trip.boardType" [value]="'AI'" #boardType="ngModel" id="boardType"
-                 name="boardType" required> All Inclusive <em>All services of full board +</em>
+          <input class="form-check-input" type="radio" [value]="'AI'" id="boardType"
+                 formControlName="boardType"> All Inclusive <em>All services of full board +</em>
         </div>
         <div class="col-sm-12">
-          <input class="form-check-input" type="radio" [(ngModel)]="trip.boardType" [value]="'RO'" #boardType="ngModel" id="boardType"
-                 name="boardType" required> Room Only
+          <input class="form-check-input" type="radio" [value]="'RO'" id="boardType"
+                 formControlName="boardType"> Room Only
         </div>
       </div>
       <div class="col-sm-4">
-        <small *ngIf="!boardType.valid && boardType.dirty"> Field required</small>
+        <!--<div class="alert alert-secondary" *ngIf="!boardType.valid"> Required</div>-->
       </div>
     </div>
     <div class="row">
@@ -40,12 +38,12 @@
         <label for="hotel"> Hotel</label>
       </div>
       <div class="col-sm-4">
-        <select [(ngModel)]="trip.hotel" class="form-control" #hotel="ngModel" id="hotel" name="hotel" required>
+        <select class="form-control" id="hotel" formControlName="hotel" required>
           <option *ngFor="let hotel of hotels" [value]="hotel.name">{{hotel.name}}</option>
         </select>
       </div>
       <div class="col-sm-4">
-        <small *ngIf="!hotel.valid && hotel.dirty"> Field required</small>
+        <!--<small *ngIf="!hotel.valid && hotel.dirty"> Field required</small>-->
       </div>
     </div>
 
@@ -54,13 +52,11 @@
         <label for="departureDate"> Departure date </label>
       </div>
       <div class="col-sm-4">
-        <input class="form-control" type="date" [(ngModel)]="trip.departureDate" #departureDate="ngModel" id="departureDate"
-               name="departureDate"
-               required>
+        <input class="form-control" type="date" id="departureDate" formControlName="departureDate">
       </div>
       <div class="col-sm-4">
-        <small *ngIf="!departureDate.valid && departureDate.dirty"> Field required</small>
-        <!--<div *ngIf="isDatesOrderValid(Date(),departureDate)"> Departure Date shouldn't be in the past</div>-->
+        <!--<small *ngIf="!departureDate.valid && departureDate.dirty"> Field required</small>-->
+        <!--<div *ngIf="isDatesOrderValid(startDepartureDate,departureDate)"> Departure Date shouldn't be in the past</div>-->
       </div>
     </div>
 
@@ -69,10 +65,9 @@
         <label for="returnDate"> Return date </label>
       </div>
       <div class="col-sm">
-        <input class="form-control" type="date" [(ngModel)]="trip.returnDate" #returnDate="ngModel" id="returnDate" name="returnDate"
-               required></div>
+        <input class="form-control" type="date" id="returnDate" formControlName="returnDate"></div>
       <div class="col-sm">
-        <div *ngIf="!returnDate.valid && returnDate.dirty"> Field required</div>
+        <!--<div *ngIf="!returnDate.valid && returnDate.dirty"> Field required</div>-->
         <!--<div *ngIf="isDatesOrderValid(departureDate.value,returnDate.value)"> Return date should be after departure date </div>-->
       </div>
     </div>
@@ -82,24 +77,22 @@
         <label for="numberOfDays"> Number of days </label>
       </div>
       <div class="col-sm">
-        <input type="number" class="form-control" [(ngModel)]="trip.numberOfDays" #numberOfDays="ngModel" id="numberOfDays"
-               name="numberOfDays" required>
+        <input type="number" class="form-control" id="numberOfDays" formControlName="numberOfDays">
       </div>
       <div class="col-sm">
-        <div *ngIf="!numberOfDays.valid && numberOfDays.dirty"> Field required</div>
+        <!--<div *ngIf="!numberOfDays.valid && numberOfDays.dirty"> Field required</div>-->
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
         <label for="homeAirport"> Home airport </label></div>
       <div class="col-sm-4">
-        <select [(ngModel)]="trip.homeAirport" class="form-control" #homeAirport="ngModel" id="homeAirport"
-                name="homeAirport" required>
+        <select class="form-control" id="homeAirport" formControlName="homeAirport">
           <option *ngFor="let airport of airports" [value]="airport.name">{{airport.name}}</option>
         </select>
       </div>
       <div class="col-sm-4">
-        <small *ngIf="!homeAirport.valid && homeAirport.dirty"> Field required</small>
+        <!--<small *ngIf="!homeAirport.valid && homeAirport.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -107,13 +100,12 @@
         <label for="destinAirport"> Destination airport </label>
       </div>
       <div class="col-sm">
-        <select [(ngModel)]="trip.destinAirport" class="form-control" #destinAirport="ngModel" id="destinAirport"
-                name="destinAirport" required>
+        <select class="form-control" id="destinAirport" formControlName="destinAirport">
           <option *ngFor="let airport of airports" [value]="airport.name">{{airport.name}}</option>
         </select>
       </div>
       <div class="col-sm">
-        <div *ngIf="!destinAirport.valid && destinAirport.dirty"> Field required</div>
+        <!--<div *ngIf="!destinAirport.valid && destinAirport.dirty"> Field required</div>-->
       </div>
     </div>
     <div class="row">
@@ -121,11 +113,10 @@
         <label for="adultPrice"> Price for an adult </label>
       </div>
       <div class="col-sm">
-        <input type="number"class="form-control" [(ngModel)]="trip.adultPrice" #adultPrice="ngModel" id="adultPrice" name="adultPrice"
-               required>
+        <input type="number" class="form-control" id="adultPrice" formControlName="adultPrice">
       </div>
       <div class="col-sm">
-        <div *ngIf="!adultPrice.valid && adultPrice.dirty"> Field required</div>
+        <!--<div *ngIf="!adultPrice.valid && adultPrice.dirty"> Field required</div>-->
       </div>
     </div>
     <div class="row">
@@ -133,11 +124,10 @@
         <label for="childrenPrice"> Price for a child </label>
       </div>
       <div class="col-sm-4">
-        <input type="number" class="form-control"[(ngModel)]="trip.childrenPrice" #childrenPrice="ngModel" id="childrenPrice"
-               name="childrenPrice" required>
+        <input type="number" class="form-control" id="childrenPrice" formControlName="childrenPrice">
       </div>
       <div class="col-sm-4">
-        <div *ngIf="!childrenPrice.valid && childrenPrice.dirty">Field required</div>
+        <!--<div *ngIf="!childrenPrice.valid && childrenPrice.dirty">Field required</div>-->
       </div>
     </div>
     <div class="row">
@@ -145,11 +135,10 @@
         <label for="promoPrice"> Price in promotion </label>
       </div>
       <div class="col-sm-4">
-        <input type="number" class="form-control"[(ngModel)]="trip.promoPrice" #promoPrice="ngModel" id="promoPrice" name="promoPrice"
-               required>
+        <input type="number" class="form-control" id="promoPrice" formControlName="promoPrice" >
       </div>
       <div class="col-sm-4">
-        <div *ngIf="!promoPrice.valid && promoPrice.dirty"> Field required</div>
+        <!--<div *ngIf="!promoPrice.valid && promoPrice.dirty"> Field required</div>-->
       </div>
     </div>
     <div class="row">
@@ -157,11 +146,10 @@
         <label for="adultVacancy"> Vacancy for adults </label>
       </div>
       <div class="col-sm-4">
-        <input type="number" class="form-control"[(ngModel)]="trip.adultVacancy" #adultVacancy="ngModel" id="adultVacancy"
-               name="adultVacancy" required>
+        <input type="number" class="form-control" id="adultVacancy" formControlName="adultVacancy">
       </div>
       <div class="col-sm-4">
-        <small *ngIf="!adultVacancy.valid && adultVacancy.dirty"> Field required</small>
+        <!--<small *ngIf="!adultVacancy.valid && adultVacancy.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -169,11 +157,10 @@
         <label for="childrenVacancy"> Vacancy for children </label>
       </div>
       <div class="col-sm-4">
-        <input type="number" class="form-control"[(ngModel)]="trip.childrenVacancy" #childrenVacancy="ngModel" id="childrenVacancy"
-               name="childrenVacancy" required>
+        <input type="number" class="form-control" id="childrenVacancy" formControlName="childrenVacancy">
       </div>
       <div class="col-sm-4">
-        <div class="alert alert-secondary" *ngIf="!childrenVacancy.valid && childrenVacancy.dirty">Field required</div>
+        <!--<div class="alert alert-secondary" *ngIf="!childrenVacancy.valid && childrenVacancy.dirty">Field required</div>-->
       </div>
     </div>
     <div class="row">
@@ -181,14 +168,12 @@
         <label> Click to save </label>
       </div>
       <div class="col-sm-4">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!addTripForm.valid"> ADD TRIP
-        </button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block"> ADD TRIP </button>
       </div>
       <div class="col-sm-4">
-        <div class="alert alert-success" *ngIf="addTripForm.valid"><h3>All fields valid </h3></div>
+        <!--<div class="alert alert-success" *ngIf="addTripForm.valid"><h3>All fields valid </h3></div>-->
       </div>
     </div>
   </div>
 </form>
-<!--</div>-->
-<!--</div>-->
+
