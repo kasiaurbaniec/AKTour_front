@@ -12,8 +12,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let hotel of hotels">
-          <td>{{ hotel.id }}</td>
-          <td>{{ hotel.name }}</td>
+          <td>{{ hotel.id }}</td> 
+          <td class="nav-link" *ngIf="hotel.name ==='Mariott'"  routerLink="/Mariott">{{ hotel.name }}</td>
+          <td class="nav-link" *ngIf="hotel.name ==='Zacisze'"  routerLink="/Zacisze">{{ hotel.name }}</td>
+          <td class="nav-link" *ngIf="hotel.name ==='Hilton'"  routerLink="/Hilton">{{ hotel.name }}</td>
+          <td class="nav-link" *ngIf="hotel.name ==='Le Corbusiere'"  routerLink="/LeCorbusiere">{{ hotel.name }}</td>
           <td>{{ hotel.standard }}</td>
           <td>{{ hotel.description }}</td>
         </tr>
