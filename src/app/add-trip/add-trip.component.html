@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <!--<div class="alert alert-secondary" *ngIf="!boardType.valid"> Required</div>-->
+        <!--<div class="alert alert-secondary" *ngIf="!addTripForm.value.boardType.valid"> Required</div>-->
       </div>
     </div>
     <div class="row">
@@ -38,12 +38,12 @@
         <label for="hotel"> Hotel</label>
       </div>
       <div class="col-sm-4">
-        <select class="form-control" id="hotel" formControlName="hotel" required>
+        <select class="form-control" id="hotel" formControlName="hotel">
           <option *ngFor="let hotel of hotels" [value]="hotel.name">{{hotel.name}}</option>
         </select>
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="!hotel.valid && hotel.dirty"> Field required</small>-->
+        <!--<small *ngIf="addTripForm.value.hotel.invalid && addTripForm.value.hotel.dirty"> Field required</small>-->
       </div>
     </div>
 
@@ -55,7 +55,7 @@
         <input class="form-control" type="date" id="departureDate" formControlName="departureDate">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="!departureDate.valid && departureDate.dirty"> Field required</small>-->
+        <!--<small *ngIf="addTripForm.value.departureDate.invalid && addTripForm.value.departureDate.dirty"> Field required</small>-->
         <!--<div *ngIf="isDatesOrderValid(startDepartureDate,departureDate)"> Departure Date shouldn't be in the past</div>-->
       </div>
     </div>
@@ -67,7 +67,7 @@
       <div class="col-sm">
         <input class="form-control" type="date" id="returnDate" formControlName="returnDate"></div>
       <div class="col-sm">
-        <!--<div *ngIf="!returnDate.valid && returnDate.dirty"> Field required</div>-->
+        <!--<div *ngIf="addTripForm.value.returnDate.invalid && addTripForm.value.returnDate.dirty"> Field required</div>-->
         <!--<div *ngIf="isDatesOrderValid(departureDate.value,returnDate.value)"> Return date should be after departure date </div>-->
       </div>
     </div>
@@ -80,7 +80,7 @@
         <input type="number" class="form-control" id="numberOfDays" formControlName="numberOfDays">
       </div>
       <div class="col-sm">
-        <!--<div *ngIf="!numberOfDays.valid && numberOfDays.dirty"> Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.numberOfDays.invalid && addTripForm.value.numberOfDays.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -92,7 +92,7 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="!homeAirport.valid && homeAirport.dirty"> Field required</small>-->
+        <!--<small *ngIf="addTripForm.value.homeAirport.invalid && addTripForm.value.homeAirport.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -105,7 +105,7 @@
         </select>
       </div>
       <div class="col-sm">
-        <!--<div *ngIf="!destinAirport.valid && destinAirport.dirty"> Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.destinAirport.invalid && addTripForm.value.destinAirport.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -116,7 +116,7 @@
         <input type="number" class="form-control" id="adultPrice" formControlName="adultPrice">
       </div>
       <div class="col-sm">
-        <!--<div *ngIf="!adultPrice.valid && adultPrice.dirty"> Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.adultPrice.invalid && addTripForm.value.adultPrice.dirty"> Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -127,7 +127,7 @@
         <input type="number" class="form-control" id="childrenPrice" formControlName="childrenPrice">
       </div>
       <div class="col-sm-4">
-        <!--<div *ngIf="!childrenPrice.valid && childrenPrice.dirty">Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.childrenPrice.invalid && addTripForm.value.childrenPrice.dirty">Field required</small>-->
       </div>
     </div>
     <div class="row">
@@ -135,10 +135,11 @@
         <label for="promoPrice"> Price in promotion </label>
       </div>
       <div class="col-sm-4">
-        <input type="number" class="form-control" id="promoPrice" formControlName="promoPrice" >
+        <input type="number" class="form-control" id="promoPrice" formControlName="promoPrice">
       </div>
       <div class="col-sm-4">
-        <!--<div *ngIf="!promoPrice.valid && promoPrice.dirty"> Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.promoPrice.invalid && addTripForm.value.promoPrice.dirty"> Field required-->
+        <!--</small>-->
       </div>
     </div>
     <div class="row">
@@ -149,7 +150,8 @@
         <input type="number" class="form-control" id="adultVacancy" formControlName="adultVacancy">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="!adultVacancy.valid && adultVacancy.dirty"> Field required</small>-->
+        <!--<small *ngIf="addTripForm.value.adultVacancy.invalid && addTripForm.value.adultVacancy.dirty"> Field required-->
+        <!--</small>-->
       </div>
     </div>
     <div class="row">
@@ -160,7 +162,9 @@
         <input type="number" class="form-control" id="childrenVacancy" formControlName="childrenVacancy">
       </div>
       <div class="col-sm-4">
-        <!--<div class="alert alert-secondary" *ngIf="!childrenVacancy.valid && childrenVacancy.dirty">Field required</div>-->
+        <!--<small *ngIf="addTripForm.value.childrenVacancy.invalid && addTripForm.value.childrenVacancy.dirty">Field-->
+          <!--required-->
+        <!--</small>-->
       </div>
     </div>
     <div class="row">
@@ -168,10 +172,10 @@
         <label> Click to save </label>
       </div>
       <div class="col-sm-4">
-        <button type="submit" class="btn btn-primary btn-lg btn-block"> ADD TRIP </button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block"> ADD TRIP</button>
       </div>
       <div class="col-sm-4">
-        <!--<div class="alert alert-success" *ngIf="addTripForm.valid"><h3>All fields valid </h3></div>-->
+        <div class="alert alert-success" *ngIf="addTripForm.valid"><h2>All fields valid </h2></div>
       </div>
     </div>
   </div>
