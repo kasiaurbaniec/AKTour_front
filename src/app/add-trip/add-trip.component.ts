@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AddTripService} from "../services/add-trip.service";
 import {Hotel} from "../model/hotel";
 import {Airport} from "../model/airport";
-import { FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Trip} from "../model/trip";
+import * as moment from"moment";
 
 @Component({
   selector: 'app-add-trip',
@@ -14,10 +15,9 @@ export class AddTripComponent implements OnInit {
   addTripForm: FormGroup;
   hotels: Hotel[];
   airports: Airport[];
-  trip=new Trip();
-  public minDepartureDate = new Date(Date() + 'UTC');
-  public minReturnDate = this.minDepartureDate;
- min_price: number =3;
+  trip = new Trip();
+  // public minDepartureDate :Date = moment().add(1,'days');
+  public tripMaxPrice: number = 20000;
 
   constructor(
     private addTripService: AddTripService) {
@@ -29,19 +29,23 @@ export class AddTripComponent implements OnInit {
     this.addTripForm = new FormGroup({
       boardType: new FormControl(null),
       hotel: new FormControl(null),
-      departureDate: new FormControl(null),
-      returnDate: new FormControl(null),
-      numberOfDays: new FormControl(null),//this.correctValueValidator,Validators.required)
+      departureDate: new FormControl(null, Validators.required),
+      returnDate: new FormControl(null, Validators.required),
+      numberOfDays: new FormControl(null, Validators.required),//this.correctValueValidator,Validators.required)
       homeAirport: new FormControl(null),
-      destinAirport: new FormControl(null,Validators.required),
-      adultPrice: new FormControl(null,Validators.required),
-      childrenPrice: new FormControl(null,Validators.required),
-      promoPrice: new FormControl(null,Validators.required),
-      adultVacancy: new FormControl(null,Validators.required),
-      childrenVacancy: new FormControl(null,Validators.required)
+      destinAirport: new FormControl(null),
+      adultPrice: new FormControl(5000, [Validators.required, Validators.min(1),
+        Validators.max(this.tripMaxPrice)]),
+      childrenPrice: new FormControl(null, [Validators.required, Validators.min(1),
+        Validators.max(this.tripMaxPrice)]),
+      promoPrice: new FormControl(null, [Validators.required, Validators.min(1),
+        Validators.max(this.tripMaxPrice)]),
+      adultVacancy: new FormControl(50, [Validators.required, Validators.min(0),
+        Validators.max(100)]),
+      childrenVacancy: new FormControl(50, [Validators.required, Validators.min(0),
+        Validators.max(100)])
     });
   }
-
 
   public onSubmit() {
     console.log(this.addTripForm);
@@ -61,13 +65,22 @@ export class AddTripComponent implements OnInit {
     console.log(this.trip);
     this.addTripForm.reset();
   }
+
 // correctValueValidator(control: AbstractControl): ValidationErrors{
 //     const numberOfDaysValue=<[number]>control.value;
 //     if(numberOfDaysValue==(this.minReturnDate-this.minDepartureDate).toString()){
 //       return {'wrong numberOfDays value': true};
 //     }
 // }
-
+  setTripMaxPrice(event): void {
+    this.tripMaxPrice = event;
+    this.addTripForm.get('childrenPrice').setValidators([Validators.required, Validators.min(1),
+      Validators.max(event)]);
+    this.addTripForm.get('childrenPrice').patchValue(event * 0.8);
+    this.addTripForm.get('promoPrice').setValidators([Validators.required, Validators.min(1),
+      Validators.max(event)]);
+    this.addTripForm.get('promoPrice').patchValue(event * 0.75);
+  }
 
 }
 

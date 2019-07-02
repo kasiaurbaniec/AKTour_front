@@ -30,7 +30,8 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <!--<div class="alert alert-secondary" *ngIf="!addTripForm.value.boardType.valid"> Required</div>-->
+        <!--<div class="alert alert-secondary" *ngIf="addTripForm.get('boardType').errors-->
+        <!--&& addTripForm.get('boardType').errors.required"> Required</div>-->
       </div>
     </div>
     <div class="row">
@@ -43,7 +44,7 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.hotel.invalid && addTripForm.value.hotel.dirty"> Field required</small>-->
+
       </div>
     </div>
 
@@ -52,7 +53,7 @@
         <label for="departureDate"> Departure date </label>
       </div>
       <div class="col-sm-4">
-        <input class="form-control" type="date" id="departureDate" formControlName="departureDate">
+        <input class="form-control" type="date" id="departureDate" formControlName="departureDate">{{minDepartureDate}}
       </div>
       <div class="col-sm-4">
         <!--<small *ngIf="addTripForm.value.departureDate.invalid && addTripForm.value.departureDate.dirty"> Field required</small>-->
@@ -71,7 +72,6 @@
         <!--<div *ngIf="isDatesOrderValid(departureDate.value,returnDate.value)"> Return date should be after departure date </div>-->
       </div>
     </div>
-
     <div class="row">
       <div class="col-sm">
         <label for="numberOfDays"> Number of days </label>
@@ -80,7 +80,7 @@
         <input type="number" class="form-control" id="numberOfDays" formControlName="numberOfDays">
       </div>
       <div class="col-sm">
-        <!--<small *ngIf="addTripForm.value.numberOfDays.invalid && addTripForm.value.numberOfDays.dirty"> Field required</small>-->
+
       </div>
     </div>
     <div class="row">
@@ -92,7 +92,7 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.homeAirport.invalid && addTripForm.value.homeAirport.dirty"> Field required</small>-->
+
       </div>
     </div>
     <div class="row">
@@ -105,7 +105,7 @@
         </select>
       </div>
       <div class="col-sm">
-        <!--<small *ngIf="addTripForm.value.destinAirport.invalid && addTripForm.value.destinAirport.dirty"> Field required</small>-->
+
       </div>
     </div>
     <div class="row">
@@ -113,10 +113,19 @@
         <label for="adultPrice"> Price for an adult </label>
       </div>
       <div class="col-sm">
-        <input type="number" class="form-control" id="adultPrice" formControlName="adultPrice">
+        <input type="number" class="form-control" id="adultPrice" formControlName="adultPrice"
+       (ngModelChange)="setTripMaxPrice($event)" >
       </div>
       <div class="col-sm">
-        <!--<small *ngIf="addTripForm.value.adultPrice.invalid && addTripForm.value.adultPrice.dirty"> Field required</small>-->
+        <small *ngIf="addTripForm.get('adultPrice').errors && addTripForm.get('adultPrice').errors.required">
+          Field required
+        </small>
+        <small *ngIf="addTripForm.get('adultPrice').errors && addTripForm.get('adultPrice').errors.max">
+          Maximal value: 20 000 pln
+        </small>
+        <small *ngIf="addTripForm.get('adultPrice').errors && addTripForm.get('adultPrice').errors.min">
+          Minimal value: 1 pln
+        </small>
       </div>
     </div>
     <div class="row">
@@ -127,7 +136,15 @@
         <input type="number" class="form-control" id="childrenPrice" formControlName="childrenPrice">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.childrenPrice.invalid && addTripForm.value.childrenPrice.dirty">Field required</small>-->
+        <small *ngIf="addTripForm.get('childrenPrice').errors && addTripForm.get('childrenPrice').errors.required">
+          Field required
+        </small>
+        <small *ngIf="addTripForm.get('childrenPrice').errors && addTripForm.get('childrenPrice').errors.max">
+          Value must be lower than price for adults
+        </small>
+        <small *ngIf="addTripForm.get('childrenPrice').errors && addTripForm.get('childrenPrice').errors.min">
+          Minimal value: 1 pln
+        </small>
       </div>
     </div>
     <div class="row">
@@ -138,8 +155,15 @@
         <input type="number" class="form-control" id="promoPrice" formControlName="promoPrice">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.promoPrice.invalid && addTripForm.value.promoPrice.dirty"> Field required-->
-        <!--</small>-->
+        <small *ngIf="addTripForm.get('promoPrice').errors && addTripForm.get('promoPrice').errors.required">
+          Field required
+        </small>
+        <small *ngIf="addTripForm.get('promoPrice').errors && addTripForm.get('promoPrice').errors.max">
+          Value must be lower than price for adults
+        </small>
+        <small *ngIf="addTripForm.get('promoPrice').errors && addTripForm.get('promoPrice').errors.min">
+          Minimal value: 1 pln
+        </small>
       </div>
     </div>
     <div class="row">
@@ -150,8 +174,15 @@
         <input type="number" class="form-control" id="adultVacancy" formControlName="adultVacancy">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.adultVacancy.invalid && addTripForm.value.adultVacancy.dirty"> Field required-->
-        <!--</small>-->
+        <small *ngIf="addTripForm.get('adultVacancy').errors && addTripForm.get('adultVacancy').errors.required">
+          Field required
+        </small>
+        <small *ngIf="addTripForm.get('adultVacancy').errors && addTripForm.get('adultVacancy').errors.max">
+          Vacancy value should be lower than 100
+        </small>
+        <small *ngIf="addTripForm.get('adultVacancy').errors && addTripForm.get('adultVacancy').errors.min">
+          Vacancy value shouldn't be negative
+        </small>
       </div>
     </div>
     <div class="row">
@@ -162,9 +193,15 @@
         <input type="number" class="form-control" id="childrenVacancy" formControlName="childrenVacancy">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.childrenVacancy.invalid && addTripForm.value.childrenVacancy.dirty">Field-->
-          <!--required-->
-        <!--</small>-->
+        <small *ngIf="addTripForm.get('childrenVacancy').errors && addTripForm.get('childrenVacancy').errors.required">
+          Field required
+        </small>
+        <small *ngIf="addTripForm.get('childrenVacancy').errors && addTripForm.get('childrenVacancy').errors.max">
+          Vacancy value should be lower than 100
+        </small>
+        <small *ngIf="addTripForm.get('childrenVacancy').errors && addTripForm.get('childrenVacancy').errors.min">
+          Vacancy value shouldn't be negative
+        </small>
       </div>
     </div>
     <div class="row">
