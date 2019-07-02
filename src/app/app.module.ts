@@ -12,6 +12,10 @@ import { HeaderComponent } from './header/header.component';
 import { DropdownMenuComponent } from './dropdown-menu/dropdown-menu.component';
 import { ImgSliderComponent } from './img-slider/img-slider.component';
 import { AddTripComponent } from './add-trip/add-trip.component';
+import { MariottComponent } from './mariott/mariott.component';
+import { ZaciszeComponent } from './zacisze/zacisze.component';
+import { HiltonComponent } from './hilton/hilton.component';
+import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { AddTripComponent } from './add-trip/add-trip.component';
     HeaderComponent,
     DropdownMenuComponent,
     ImgSliderComponent,
-    AddTripComponent
+    AddTripComponent,
+    MariottComponent,
+    ZaciszeComponent,
+    HiltonComponent,
+    LeCorbusiereComponent
   ],
   imports: [
     BrowserModule,
