@@ -23,4 +23,9 @@ export class DatesValidator {
     return moment(departureDate).isSame(returnDate);
   }
 
+  public isNumberOfDaysWrong(departureDate: Date, returnDate: Date, days:number){
+    const tripDuration = moment(returnDate).diff(departureDate);
+    const rightNumber= moment.duration(tripDuration).asDays();
+    return days!=rightNumber;
+  }
 }

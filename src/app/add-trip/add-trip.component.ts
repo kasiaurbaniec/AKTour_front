@@ -20,6 +20,7 @@ export class AddTripComponent implements OnInit {
   departureDateValidationResponse: string;
   returnDateValidationResponse: string;
   numberOfDaysValidationResponse: string;
+  onChangeResponse: string;
   public today = new Date(new Date + 'UTC');
   public minDepartureDay = moment(this.today).add(1, 'day');
   public defReturnDay = moment(this.minDepartureDay).add(7, 'day');
@@ -41,7 +42,7 @@ export class AddTripComponent implements OnInit {
       hotel: new FormControl(null),
       departureDate: new FormControl(moment(this.minDepartureDay).format('YYYY-MM-DD'), Validators.required),
       returnDate: new FormControl(moment(this.defReturnDay).format('YYYY-MM-DD'), Validators.required),
-      numberOfDays: new FormControl({value: this.numberOfDaysValue, disabled: true}, Validators.required),
+      numberOfDays: new FormControl(this.numberOfDaysValue, Validators.required),
       homeAirport: new FormControl(null),
       destinAirport: new FormControl(null),
       adultPrice: new FormControl(5000, [Validators.required, Validators.min(1),
@@ -94,7 +95,7 @@ export class AddTripComponent implements OnInit {
     }
     const returnTempDate = this.addTripForm.get('returnDate').value;
     const daysNumber = this.countDays(event, returnTempDate);
-    this.addTripForm.get('numberOfDays').setValue(daysNumber);
+    this.addTripForm.get('numberOfDays').setValue(Math.round(daysNumber.valueOf()));
     if (this.datesValidator.isDatesTheSame(event, returnTempDate)) {
       this.numberOfDaysValidationResponse = "Trip should take at least one day";
     } else {
@@ -131,9 +132,20 @@ export class AddTripComponent implements OnInit {
         }
       }
     }
-    const daysNumber = this.countDays(departTempDate, event);
-    this.addTripForm.get('numberOfDays').setValue(daysNumber);
+     const daysNumber = this.countDays(departTempDate, event);
+    this.addTripForm.get('numberOfDays').setValue(Math.round(daysNumber.valueOf()));
   }
+
+  setNumber(event):void{
+    const departTempDate = this.addTripForm.get('departureDate').value;
+    const returnTempDate = this.addTripForm.get('returnDate').value;
+    if (this.datesValidator.isNumberOfDaysWrong(departTempDate,returnTempDate,event)) {
+      this.onChangeResponse = "Incorrect number of days";
+    } else {
+      this.onChangeResponse = "";
+    }
+  }
+
 
   countDays(departureDate: Date, returnDate: Date): number {
     const tripDuration = moment(returnDate).diff(departureDate);

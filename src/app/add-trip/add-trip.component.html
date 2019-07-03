@@ -77,10 +77,12 @@
         <label for="numberOfDays"> Number of days </label>
       </div>
       <div class="col-sm">
-        <input class="form-control" type="number" id="numberOfDays" formControlName="numberOfDays">
+        <input class="form-control" type="number" id="numberOfDays" formControlName="numberOfDays"
+               (ngModelChange)="setNumber($event)">
       </div>
       <div class="col-sm">
         <small>{{numberOfDaysValidationResponse}}</small>
+        <small>{{onChangeResponse}}</small>
       </div>
     </div>
     <div class="row">
