@@ -54,11 +54,10 @@
       </div>
       <div class="col-sm-4">
         <input class="form-control" type="date" id="departureDate" formControlName="departureDate"
-               (ngModelChange)="setDatesLimits($event)">
+               (ngModelChange)="setDepartDate($event)">
       </div>
       <div class="col-sm-4">
-        <!--<small *ngIf="addTripForm.value.departureDate.invalid && addTripForm.value.departureDate.dirty"> Field required</small>-->
-        <!--<div *ngIf="isDatesOrderValid(startDepartureDate,departureDate)"> Departure Date shouldn't be in the past</div>-->
+        <small> {{departureDateValidationResponse}}</small>
       </div>
     </div>
 
@@ -78,7 +77,7 @@
         <label for="numberOfDays"> Number of days </label>
       </div>
       <div class="col-sm">
-        <input type="number" class="form-control" id="numberOfDays" formControlName="numberOfDays">
+        <input class="form-control" type="number" id="numberOfDays" formControlName="numberOfDays" >
       </div>
       <div class="col-sm">
 
@@ -115,7 +114,7 @@
       </div>
       <div class="col-sm">
         <input type="number" class="form-control" id="adultPrice" formControlName="adultPrice"
-       (ngModelChange)="setTripMaxPrice($event)" >
+               (ngModelChange)="setTripMaxPrice($event)">
       </div>
       <div class="col-sm">
         <small *ngIf="addTripForm.get('adultPrice').errors && addTripForm.get('adultPrice').errors.required">

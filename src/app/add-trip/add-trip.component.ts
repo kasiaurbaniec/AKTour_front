@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AddTripService} from "../services/add-trip.service";
 import {Hotel} from "../model/hotel";
 import {Airport} from "../model/airport";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Trip} from "../model/trip";
-import * as moment from"moment";
+import * as moment from "moment";
+import {DatesValidator} from "../validators/dates-validator";
 
 @Component({
   selector: 'app-add-trip',
@@ -16,24 +17,28 @@ export class AddTripComponent implements OnInit {
   hotels: Hotel[];
   airports: Airport[];
   trip = new Trip();
+  departureDateValidationResponse: string;
   public today = new Date(new Date + 'UTC');
   public minDepartureDay = moment(this.today).add(1, 'day');
   public defReturnDay = moment(this.minDepartureDay).add(7, 'day');
   public tripMaxPrice: number = 20000;
+  public numberOfDaysValue: number = 7;
 
   constructor(
-    private addTripService: AddTripService) {
+    private addTripService: AddTripService,
+    private datesValidator: DatesValidator) {
   }
 
   ngOnInit() {
     this.addTripService.getHotels().subscribe(data => this.hotels = data);
     this.addTripService.getAirports().subscribe(data => this.airports = data);
+    this.departureDateValidationResponse="";
     this.addTripForm = new FormGroup({
       boardType: new FormControl(null),
       hotel: new FormControl(null),
-      departureDate: new FormControl(moment(this.minDepartureDay).format('YYYY-MM-DD'), Validators.required),
+      departureDate: new FormControl(moment(this.minDepartureDay).format('YYYY-MM-DD'), Validators.required ),
       returnDate: new FormControl(moment(this.defReturnDay).format('YYYY-MM-DD'), Validators.required),
-      numberOfDays: new FormControl(7, Validators.required),
+      numberOfDays: new FormControl({value: this.numberOfDaysValue, disabled: true}, Validators.required),
       homeAirport: new FormControl(null),
       destinAirport: new FormControl(null),
       adultPrice: new FormControl(5000, [Validators.required, Validators.min(1),
@@ -78,8 +83,19 @@ export class AddTripComponent implements OnInit {
     this.addTripForm.get('promoPrice').patchValue(event * 0.75);
   }
 
-  setDatesLimits(event):void{
-    this.addTripForm.get('returnDate').patchValue(moment(event).add(7,'days').format('YYYY-MM-DD'));
+  setDepartDate(event): void {
+    if(this.datesValidator.isDateInFuture(event)){
+      this.departureDateValidationResponse="Departure date shouldn't be in the past";
+    }
+    const returnTempDate=this.addTripForm.get('returnDate').value;
+    const daysNumber=this.countDays(event,returnTempDate);
+    this.addTripForm.get('numberOfDays').setValue(daysNumber);
+
   }
+
+countDays(departureDate: Date, returnDate : Date): number{
+  const tripDuration=moment(returnDate).diff(departureDate);
+  return moment.duration(tripDuration).asDays();
+}
 }
 
