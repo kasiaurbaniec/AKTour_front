@@ -16,7 +16,9 @@ export class AddTripComponent implements OnInit {
   hotels: Hotel[];
   airports: Airport[];
   trip = new Trip();
-  // public minDepartureDate :Date = moment().add(1,'days');
+  public today = new Date(new Date + 'UTC');
+  public minDepartureDay = moment(this.today).add(1, 'day');
+  public defReturnDay = moment(this.minDepartureDay).add(7, 'day');
   public tripMaxPrice: number = 20000;
 
   constructor(
@@ -29,9 +31,9 @@ export class AddTripComponent implements OnInit {
     this.addTripForm = new FormGroup({
       boardType: new FormControl(null),
       hotel: new FormControl(null),
-      departureDate: new FormControl(null, Validators.required),
-      returnDate: new FormControl(null, Validators.required),
-      numberOfDays: new FormControl(null, Validators.required),//this.correctValueValidator,Validators.required)
+      departureDate: new FormControl(moment(this.minDepartureDay).format('YYYY-MM-DD'), Validators.required),
+      returnDate: new FormControl(moment(this.defReturnDay).format('YYYY-MM-DD'), Validators.required),
+      numberOfDays: new FormControl(7, Validators.required),//this.correctValueValidator,Validators.required)
       homeAirport: new FormControl(null),
       destinAirport: new FormControl(null),
       adultPrice: new FormControl(5000, [Validators.required, Validators.min(1),
