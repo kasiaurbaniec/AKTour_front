@@ -53,7 +53,8 @@
         <label for="departureDate"> Departure date </label>
       </div>
       <div class="col-sm-4">
-        <input class="form-control" type="date" id="departureDate" formControlName="departureDate">{{minDepartureDate}}
+        <input class="form-control" type="date" id="departureDate" formControlName="departureDate"
+               (ngModelChange)="setDatesLimits($event)">
       </div>
       <div class="col-sm-4">
         <!--<small *ngIf="addTripForm.value.departureDate.invalid && addTripForm.value.departureDate.dirty"> Field required</small>-->

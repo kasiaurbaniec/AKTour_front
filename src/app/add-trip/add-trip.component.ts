@@ -33,7 +33,7 @@ export class AddTripComponent implements OnInit {
       hotel: new FormControl(null),
       departureDate: new FormControl(moment(this.minDepartureDay).format('YYYY-MM-DD'), Validators.required),
       returnDate: new FormControl(moment(this.defReturnDay).format('YYYY-MM-DD'), Validators.required),
-      numberOfDays: new FormControl(7, Validators.required),//this.correctValueValidator,Validators.required)
+      numberOfDays: new FormControl(7, Validators.required),
       homeAirport: new FormControl(null),
       destinAirport: new FormControl(null),
       adultPrice: new FormControl(5000, [Validators.required, Validators.min(1),
@@ -68,12 +68,6 @@ export class AddTripComponent implements OnInit {
     this.addTripForm.reset();
   }
 
-// correctValueValidator(control: AbstractControl): ValidationErrors{
-//     const numberOfDaysValue=<[number]>control.value;
-//     if(numberOfDaysValue==(this.minReturnDate-this.minDepartureDate).toString()){
-//       return {'wrong numberOfDays value': true};
-//     }
-// }
   setTripMaxPrice(event): void {
     this.tripMaxPrice = event;
     this.addTripForm.get('childrenPrice').setValidators([Validators.required, Validators.min(1),
@@ -84,5 +78,8 @@ export class AddTripComponent implements OnInit {
     this.addTripForm.get('promoPrice').patchValue(event * 0.75);
   }
 
+  setDatesLimits(event):void{
+    this.addTripForm.get('returnDate').patchValue(moment(event).add(7,'days').format('YYYY-MM-DD'));
+  }
 }
 
