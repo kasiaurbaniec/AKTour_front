@@ -40,7 +40,7 @@ export class CascadeSearchComponent implements OnInit {
   onSelectContinent(continentName){
     this.getTripsByContinent(continentName);
     this.cascadeSearchService.getCountriesByContinentName(continentName).subscribe(dataCounties=>{
-      this.continentHasCountry = dataCounties.length > 0 ? true : false;
+      this.continentHasCountry = dataCounties.length > 0 ;
       if(this.continentHasCountry){
         this.countries=dataCounties;
         this.cascadeSearchService.getCitiesByContinentName(continentName).subscribe(dataCit=>this.cities=dataCit);
@@ -55,7 +55,7 @@ export class CascadeSearchComponent implements OnInit {
   onSelectCountry(countryName){
     this.getTripsByCountry(countryName);
     this.cascadeSearchService.getCitiesByCountryName(countryName).subscribe(dataCities=>{
-        this.continentHasCountry = dataCities.length > 0 ? true : false;
+        this.continentHasCountry = dataCities.length > 0;
         if(this.continentHasCountry){
           this.cities=dataCities;
         } else {
@@ -67,7 +67,7 @@ export class CascadeSearchComponent implements OnInit {
   }
   getTripsByCountry(countryName){
     this.cascadeSearchService.getTripsByCountryName(countryName).subscribe(data=>{
-      this.hasResult=data.length> 0 ? true: false;
+      this.hasResult=data.length> 0 ;
       this.tripsFiltered=data;
     }, 
     error=> {console.log(error.error.ApiError.message);  
@@ -75,7 +75,7 @@ export class CascadeSearchComponent implements OnInit {
   }
   getTripsByContinent(continentName){
     this.cascadeSearchService.getTripsByContinentName(continentName).subscribe(data=>{
-      this.hasResult=data.length> 0 ? true: false;
+      this.hasResult=data.length> 0 ;
       this.tripsFiltered=data;
     }, 
     error=> {console.log(error.error.ApiError.message);  
@@ -83,7 +83,7 @@ export class CascadeSearchComponent implements OnInit {
   }
   onSelectCity(cityName){
     this.cascadeSearchService.getTripsByCityName(cityName).subscribe(data=>{
-        this.hasResult=data.length> 0 ? true: false;
+        this.hasResult=data.length> 0;
         this.tripsFiltered=data;
       },
       error=> {console.log(error.error.ApiError.message);
