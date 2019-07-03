@@ -66,10 +66,10 @@
         <label for="returnDate"> Return date </label>
       </div>
       <div class="col-sm">
-        <input class="form-control" type="date" id="returnDate" formControlName="returnDate"></div>
+        <input class="form-control" type="date" id="returnDate" formControlName="returnDate"
+               (ngModelChange)="setReturnDate($event)"></div>
       <div class="col-sm">
-        <!--<div *ngIf="addTripForm.value.returnDate.invalid && addTripForm.value.returnDate.dirty"> Field required</div>-->
-        <!--<div *ngIf="isDatesOrderValid(departureDate.value,returnDate.value)"> Return date should be after departure date </div>-->
+        <small> {{returnDateValidationResponse}}</small>
       </div>
     </div>
     <div class="row">
@@ -77,10 +77,10 @@
         <label for="numberOfDays"> Number of days </label>
       </div>
       <div class="col-sm">
-        <input class="form-control" type="number" id="numberOfDays" formControlName="numberOfDays" >
+        <input class="form-control" type="number" id="numberOfDays" formControlName="numberOfDays">
       </div>
       <div class="col-sm">
-
+        <small>{{numberOfDaysValidationResponse}}</small>
       </div>
     </div>
     <div class="row">
