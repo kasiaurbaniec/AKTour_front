@@ -211,10 +211,10 @@
         <label> Click to save </label>
       </div>
       <div class="col-sm-4">
-        <button type="submit" class="btn btn-primary btn-lg btn-block"> ADD TRIP</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block"> ADD TRIP </button>
       </div>
       <div class="col-sm-4">
-        <div class="alert alert-success" *ngIf="addTripForm.valid"><h2>All fields valid </h2></div>
+        <button type="button" class="btn badge-secondary btn-lg btn-block" (click)="onReset()" > RESET </button>
       </div>
     </div>
   </div>

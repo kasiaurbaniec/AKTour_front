@@ -74,7 +74,25 @@ export class AddTripComponent implements OnInit {
     this.trip.childrenVacancy = this.addTripForm.value.childrenVacancy;
     this.addTripService.addTrip(this.trip).subscribe(data => this.trip = data);
     console.log(this.trip);
-    this.addTripForm.reset();
+    this.addTripForm.reset({
+      departureDate: moment(this.minDepartureDay).format('YYYY-MM-DD'),
+      returnDate: moment(this.defReturnDay).format('YYYY-MM-DD'),
+      numberOfDays: 7,
+      adultPrice: 5000,
+      adultVacancy: 50,
+      childrenVacancy: 50
+    });
+  }
+
+  onReset() {
+    this.addTripForm.reset({
+      departureDate: moment(this.minDepartureDay).format('YYYY-MM-DD'),
+      returnDate: moment(this.defReturnDay).format('YYYY-MM-DD'),
+      numberOfDays: 7,
+      adultPrice: 5000,
+      adultVacancy: 50,
+      childrenVacancy: 50
+    });
   }
 
   setTripMaxPrice(event): void {
@@ -132,20 +150,19 @@ export class AddTripComponent implements OnInit {
         }
       }
     }
-     const daysNumber = this.countDays(departTempDate, event);
+    const daysNumber = this.countDays(departTempDate, event);
     this.addTripForm.get('numberOfDays').setValue(Math.round(daysNumber.valueOf()));
   }
 
-  setNumber(event):void{
+  setNumber(event): void {
     const departTempDate = this.addTripForm.get('departureDate').value;
     const returnTempDate = this.addTripForm.get('returnDate').value;
-    if (this.datesValidator.isNumberOfDaysWrong(departTempDate,returnTempDate,event)) {
+    if (this.datesValidator.isNumberOfDaysWrong(departTempDate, returnTempDate, event)) {
       this.onChangeResponse = "Incorrect number of days";
     } else {
       this.onChangeResponse = "";
     }
   }
-
 
   countDays(departureDate: Date, returnDate: Date): number {
     const tripDuration = moment(returnDate).diff(departureDate);
