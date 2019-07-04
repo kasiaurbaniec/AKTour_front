@@ -1,10 +1,54 @@
 <nav class="menu"></nav>
 
-<h1>Your Trip information</h1>
+<h1>Trip Details</h1>
 <div *ngIf="trip">
-<h2>{{trip.hotel.name| uppercase}} Details</h2>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="d-flex align-items-end flex-column">
+        <div class="badge badge-pill badge-dark float-right" style="font-size: large">{{trip.adultPrice}} PLN</div>
 
+        <div class="badge badge-pill badge-info float-right" style="font-size: medium"> PROMOTION : {{trip.promoPrice}}
+          PLN
+        </div>
+      </div>
+      <h1 class="text-center ">{{trip.hotel.name| uppercase}}</h1>
+      <div>{{trip.hotel.standard}}</div>
+      <p class="lead">{{trip.hotel.description}}</p>
+    </div>
+  </div>
 
-<button (click)="goBack()"> BACK </button>
-
+  <dl class="row">
+    <dt class="col-sm-3">Board Type:</dt>
+    <dd class="col-sm-9">{{trip.boardType}}</dd>
+    <dt class="col-sm-3">Departure:</dt>
+    <dd class="col-sm-9">{{trip.departureDate}}</dd>
+    <dt class="col-sm-3">Return:</dt>
+    <dd class="col-sm-9">{{trip.returnDate}}</dd>
+    <dt class="col-sm-3">Home Airport:</dt>
+    <dd class="col-sm-9">{{trip.homeAirport.name}}</dd>
+    <dt class="col-sm-3">Destination Airport:</dt>
+    <dd class="col-sm-9">{{trip.destinAirport.name}}</dd>
+    <dt class="col-sm-3">PRICES</dt>
+    <dd class="col-sm-9">
+      <dl class="row">
+        <dt class="col-sm-4">{{trip.adultPrice}} PLN - adults</dt>
+        <dd class="col-sm-8">{{trip.adultVacancy}} vacancy left</dd>
+      </dl>
+      <dl class="row">
+        <dt class="col-sm-4">{{trip.childrenPrice}} PLN - children</dt>
+        <dd class="col-sm-8">{{trip.childrenVacancy}} vacancy left</dd>
+      </dl>
+    </dd>
+    <dt class="col-sm-3"></dt>
+    <dd class="col-sm-9">
+      <dl class="row">
+        <dt class="col-sm-4">
+          <button type="button" class="btn btn-success btn-lg">BUY</button>
+        </dt>
+        <dd class="col-sm-8">
+          <button type="button" class="btn btn-secondary btn-lg" (click)="goBack()">BACK</button>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
 </div>

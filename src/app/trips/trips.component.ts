@@ -9,15 +9,9 @@ import { TripService } from '../services/trip.service';
 })
 export class TripsComponent implements OnInit {
   trips:Trip[];
-  selectedTrip: Trip;
   constructor(private tripService:TripService) { }
 
   ngOnInit() {
     this.tripService.findAll().subscribe(data => this.trips=  data);
   }
-// onSelect(trip){
-// const idOfTrip=trip.id;
-// this.selectedTrip=trip;
-// console.log(trip);
-// }
 }
