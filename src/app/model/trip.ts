@@ -2,7 +2,7 @@ import { Hotel } from './hotel';
 import {Airport} from "./airport";
 
 export class Trip {
-    id?: number;
+    id: number;
     departureDate?: Date;
     returnDate?:Date;
     numberOfDays?: number;

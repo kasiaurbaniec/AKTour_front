@@ -14,5 +14,4 @@ export class TripsComponent implements OnInit {
   ngOnInit() {
     this.tripService.findAll().subscribe(data => this.trips=  data);
   }
-
 }

@@ -16,6 +16,7 @@ import { MariottComponent } from './mariott/mariott.component';
 import { ZaciszeComponent } from './zacisze/zacisze.component';
 import { HiltonComponent } from './hilton/hilton.component';
 import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
+import { TripDetailComponent } from './trip-detail/trip-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
     MariottComponent,
     ZaciszeComponent,
     HiltonComponent,
-    LeCorbusiereComponent
+    LeCorbusiereComponent,
+    TripDetailComponent
   ],
   imports: [
     BrowserModule,

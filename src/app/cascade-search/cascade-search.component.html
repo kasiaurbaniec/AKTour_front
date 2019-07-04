@@ -42,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let trip of tripsFiltered">
+        <tr *ngFor="let trip of tripsFiltered" routerLink="/tripDetail/{{trip.id}}">
           <td>{{ trip.departureDate }}</td>
           <td>{{ trip.returnDate }}</td>
           <td>{{ trip.boardType }}</td>
