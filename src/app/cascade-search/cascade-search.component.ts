@@ -21,7 +21,7 @@ export class CascadeSearchComponent implements OnInit {
   tripsFiltered: Trip[];
   hasResult:boolean;
   continentHasCountry:boolean;
-  info: string;
+
   constructor(
     private cascadeSearchService: CascadeSearchService,
     private tripService: TripService) 
@@ -34,7 +34,7 @@ export class CascadeSearchComponent implements OnInit {
     this.cascadeSearchService.getCountries().subscribe(data=>this.countries=data);
     this.cascadeSearchService.getCities().subscribe(data=>this.cities=data);
     this.tripService.findAll().subscribe(data=>this.tripsFiltered=data);
-    this.onSelectContinent(this.selectedContinent.name);
+    // this.onSelectContinent(this.selectedContinent.name);
   }
 
   onSelectContinent(continentName){
@@ -44,9 +44,7 @@ export class CascadeSearchComponent implements OnInit {
       if(this.continentHasCountry){
         this.countries=dataCounties;
         this.cascadeSearchService.getCitiesByContinentName(continentName).subscribe(dataCit=>this.cities=dataCit);
-      } else {
-        this.hasResult=false;
-        }
+      }
     },
     error =>{console.log(error.error.ApiError.message);
     });
@@ -58,8 +56,6 @@ export class CascadeSearchComponent implements OnInit {
         this.continentHasCountry = dataCities.length > 0;
         if(this.continentHasCountry){
           this.cities=dataCities;
-        } else {
-          this.hasResult=false;
         }
       },
       error =>{console.log(error.error.ApiError.message);
@@ -67,7 +63,6 @@ export class CascadeSearchComponent implements OnInit {
   }
   getTripsByCountry(countryName){
     this.cascadeSearchService.getTripsByCountryName(countryName).subscribe(data=>{
-      this.hasResult=data.length> 0 ;
       this.tripsFiltered=data;
     }, 
     error=> {console.log(error.error.ApiError.message);  
@@ -75,7 +70,6 @@ export class CascadeSearchComponent implements OnInit {
   }
   getTripsByContinent(continentName){
     this.cascadeSearchService.getTripsByContinentName(continentName).subscribe(data=>{
-      this.hasResult=data.length> 0 ;
       this.tripsFiltered=data;
     }, 
     error=> {console.log(error.error.ApiError.message);  
@@ -83,7 +77,6 @@ export class CascadeSearchComponent implements OnInit {
   }
   onSelectCity(cityName){
     this.cascadeSearchService.getTripsByCityName(cityName).subscribe(data=>{
-        this.hasResult=data.length> 0;
         this.tripsFiltered=data;
       },
       error=> {console.log(error.error.ApiError.message);
