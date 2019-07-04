@@ -1,0 +1,10 @@
+<nav class="menu"></nav>
+
+<h1>Your Trip information</h1>
+<div *ngIf="trip">
+<h2>{{trip.hotel.name| uppercase}} Details</h2>
+
+
+<button (click)="goBack()"> BACK </button>
+
+</div>

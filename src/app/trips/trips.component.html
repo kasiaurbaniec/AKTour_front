@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trip of trips">
+        <tr *ngFor="let trip of trips" routerLink="/tripDetail/{{trip.id}}">
           <td>{{ trip.departureDate }}</td>
           <td *ngIf="trip.homeAirport!=null; else noAirport"> {{ trip.homeAirport.name }}</td>
           <td>{{ trip.returnDate }}</td>

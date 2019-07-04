@@ -8,6 +8,7 @@ import { MariottComponent } from './mariott/mariott.component';
 import { ZaciszeComponent } from './zacisze/zacisze.component';
 import { HiltonComponent } from './hilton/hilton.component';
 import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
+import {TripDetailComponent} from "./trip-detail/trip-detail.component";
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:  'Zacisze', component: ZaciszeComponent},
   {path: 'Hilton', component: HiltonComponent},
   {path: 'LeCorbusiere', component: LeCorbusiereComponent},
+  {path: 'tripDetail/:id', component: TripDetailComponent}
 ];
 
 @NgModule({
