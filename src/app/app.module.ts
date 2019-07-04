@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HotelsAllComponent } from './hotels-all/hotels-all.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +36,8 @@ import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [HotelService],
   bootstrap: [AppComponent]
