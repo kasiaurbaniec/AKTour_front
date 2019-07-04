@@ -32,7 +32,7 @@
     <div>
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-        <tr *ngIf="tripsFiltered.length>0; else responseText">
+        <tr *ngIf="hasResult; else responseText">
           <th scope="col">Daparture Date</th>
           <th scope="col">Return Date</th>
           <th scope="col">Type Of Board</th>
