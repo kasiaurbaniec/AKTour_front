@@ -10,6 +10,9 @@ import { HiltonComponent } from './hilton/hilton.component';
 import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
 import {TripDetailComponent} from "./trip-detail/trip-detail.component";
 import {BuyTripFormComponent} from "./buy-trip-form/buy-trip-form.component";
+import { CartComponent } from './cart/cart.component';
+
+
 
 
 const routes: Routes = [
@@ -22,7 +25,8 @@ const routes: Routes = [
   {path: 'Hilton', component: HiltonComponent},
   {path: 'LeCorbusiere', component: LeCorbusiereComponent},
   {path: 'tripDetail/:id', component: TripDetailComponent},
-  {path: 'buyTripForm/:id', component: BuyTripFormComponent}
+  {path: 'buyTripForm/:id', component: BuyTripFormComponent},
+  {path: 'cart', component:CartComponent}
 ];
 
 @NgModule({
