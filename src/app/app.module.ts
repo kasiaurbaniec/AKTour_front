@@ -17,6 +17,7 @@ import { ZaciszeComponent } from './zacisze/zacisze.component';
 import { HiltonComponent } from './hilton/hilton.component';
 import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
 import { TripDetailComponent } from './trip-detail/trip-detail.component';
+import { BuyTripFormComponent } from './buy-trip-form/buy-trip-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TripDetailComponent } from './trip-detail/trip-detail.component';
     ZaciszeComponent,
     HiltonComponent,
     LeCorbusiereComponent,
-    TripDetailComponent
+    TripDetailComponent,
+    BuyTripFormComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,6 @@ export class TripDetailComponent implements OnInit {
   ngOnInit(): void {
     console.log(+this.route.snapshot.paramMap.get('id'));
     this.getTrip()
-    console.log(this.trip)
   }
 
   getTrip(): void {
