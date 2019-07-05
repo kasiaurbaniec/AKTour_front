@@ -1,14 +1,16 @@
-<h4>Summary Of Buing Trip:</h4>
+<br>
+<h4 class="text-center">Summary Of Buing Trip:</h4>
+<br>
 <div *ngIf="trip">
   <div class="container">
     <div class="row" style="font-size: small;color: darkslateblue">
-      <div class="col-sm">
+      <div class="col-sm-4">
         Hotel:
       </div>
-      <div class="col-sm">
+      <div class="col-sm-4">
         Board Type:
       </div>
-      <div class="col-sm">
+      <div class="col-sm-4">
         Standard:
       </div>
     </div>
@@ -69,57 +71,47 @@
     </div>
   </div>
   <form [formGroup]="addVisitors" (ngSubmit)="onSubmit()">
-
+<br>
     <div class="row "style="font-size: small;color: darkslateblue">
-      <div class="col-sm">
-        <label for="firstName"> First name </label>
-      </div>
-      <div class="col-sm">
-        <label for="lastName"> Last name </label>
-      </div>
-      <div class="col-sm">
-        <label for="age"> Age </label>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-sm-4">
+        <label class="text-center" for="firstName"> First name 
         <input class="form-control" id="firstName" formControlName="firstName">
+      </label>
       </div>
       <div class="col-sm-4">
+        <label class="text-center" for="lastName"> Last name 
         <input class="form-control" id="lastName" formControlName="lastName">
+      </label>
       </div>
       <div class="col-sm-4">
+        <label class="text-center" for="age"> Age
         <input type="number" class="form-control" id="age" formControlName="lastName">
+      </label>
       </div>
     </div>
     <div class="row "style="font-size: small;color: darkslateblue">
       <div class="col-sm-4">
-        <label for="street"> Street </label>
-      </div>
-      <div class="col-sm-2">
-        <label for="streetNr"> Street number </label>
+        <label class="text-center" for="street"> Street 
+        <input class="form-control" id="street" formControlName="street">
+      </label>
       </div>
       <div class="col-sm-4">
-        <label for="city"> City </label>
-      </div>
-      <div class="col-sm-2">
-        <label for="zipCode"> Zip Code </label>
-      </div>
-      <div class="row ">
-        <div class="col-sm-4">
-          <input class="form-control" id="street" formControlName="street">
-        </div>
-        <div class="col-sm-2">
+        <label class="text-center" for="streetNr"> Street number 
           <input class="form-control" id="streetNr" formControlName="streetNr">
-        </div>
-        <div class="col-sm-4">
-          <input class="form-control" id="city" formControlName="city">
-        </div>
-        <div class="col-sm-2">
-          <input class="form-control" id="zipCode" formControlName="zipCode">
-        </div>
+        </label>
+      </div>
+      <div  class="col-sm-4">
+        <label class="text-center" for="city"> City
+            <input class="form-control" id="city" formControlName="city">
+           </label>
+      </div>
+      <div class="col-sm-4">
+        <label class="text-center" for="zipCode"> Zip Code 
+            <input class="form-control" id="zipCode" formControlName="zipCode">
+        </label>
       </div>
     </div>
+  
     <div class="row">
       <div class="col-sm-4">
         If everything is correct accept:
