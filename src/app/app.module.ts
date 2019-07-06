@@ -18,6 +18,7 @@ import { HiltonComponent } from './hilton/hilton.component';
 import { LeCorbusiereComponent } from './le-corbusiere/le-corbusiere.component';
 import { TripDetailComponent } from './trip-detail/trip-detail.component';
 import { BuyTripFormComponent } from './buy-trip-form/buy-trip-form.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BuyTripFormComponent } from './buy-trip-form/buy-trip-form.component';
     HiltonComponent,
     LeCorbusiereComponent,
     TripDetailComponent,
-    BuyTripFormComponent
+    BuyTripFormComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
