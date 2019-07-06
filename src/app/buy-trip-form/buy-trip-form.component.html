@@ -1,0 +1,143 @@
+<h4>Summary Of Buing Trip:</h4>
+<div *ngIf="trip">
+  <div class="container">
+    <div class="row" style="font-size: small;color: darkslateblue">
+      <div class="col-sm">
+        Hotel:
+      </div>
+      <div class="col-sm">
+        Board Type:
+      </div>
+      <div class="col-sm">
+        Standard:
+      </div>
+    </div>
+    <div class="row" style="font-size: medium">
+      <div class="col-sm">
+        {{trip.hotel.name}}
+      </div>
+      <div class="col-sm">
+        {{trip.boardType}}
+      </div>
+      <div class="col-sm">
+        {{trip.hotel.standard}}
+      </div>
+    </div>
+    <div class="row" style="font-size: small;color: darkslateblue">
+      <div class="col-sm">
+        Departure:
+      </div>
+      <div class="col-sm">
+        Return:
+      </div>
+      <div class="col-sm">
+        Number of days:
+      </div>
+    </div>
+    <div class="row" style="font-size: medium">
+      <div class="col-sm">
+        {{trip.departureDate}}
+      </div>
+      <div class="col-sm">
+        {{trip.returnDate}}
+      </div>
+      <div class="col-sm">
+        {{trip.numberOfDays}}
+      </div>
+    </div>
+    <div class="row" style="font-size: small;color: darkslateblue">
+      <div class="col-sm">
+        Price:
+      </div>
+      <div class="col-sm">
+        Promotion:
+      </div>
+      <div class="col-sm">
+        Children Price:
+      </div>
+    </div>
+    <div class="row" style="font-size: medium">
+      <div class="col-sm">
+        {{trip.adultPrice}}
+      </div>
+      <div class="col-sm" style="color: green">
+        {{trip.promoPrice}}
+      </div>
+      <div class="col-sm">
+        {{trip.childrenPrice}}
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="addVisitors" (ngSubmit)="onSubmit()">
+
+    <div class="row "style="font-size: small;color: darkslateblue">
+      <div class="col-sm">
+        <label for="firstName"> First name </label>
+      </div>
+      <div class="col-sm">
+        <label for="lastName"> Last name </label>
+      </div>
+      <div class="col-sm">
+        <label for="age"> Age </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <input class="form-control" id="firstName" formControlName="firstName">
+      </div>
+      <div class="col-sm-4">
+        <input class="form-control" id="lastName" formControlName="lastName">
+      </div>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" id="age" formControlName="lastName">
+      </div>
+    </div>
+    <div class="row "style="font-size: small;color: darkslateblue">
+      <div class="col-sm-4">
+        <label for="street"> Street </label>
+      </div>
+      <div class="col-sm-2">
+        <label for="streetNr"> Street number </label>
+      </div>
+      <div class="col-sm-4">
+        <label for="city"> City </label>
+      </div>
+      <div class="col-sm-2">
+        <label for="zipCode"> Zip Code </label>
+      </div>
+      <div class="row ">
+        <div class="col-sm-4">
+          <input class="form-control" id="street" formControlName="street">
+        </div>
+        <div class="col-sm-2">
+          <input class="form-control" id="streetNr" formControlName="streetNr">
+        </div>
+        <div class="col-sm-4">
+          <input class="form-control" id="city" formControlName="city">
+        </div>
+        <div class="col-sm-2">
+          <input class="form-control" id="zipCode" formControlName="zipCode">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        If everything is correct accept:
+      </div>
+      <div class="col-sm-4">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">PAY</button>
+      </div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">BACK</button>
+      </div>
+    </div>
+  </form>
+
+
+</div>
+
+
+
+
+
+

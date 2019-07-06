@@ -12,7 +12,7 @@ export class Trip {
     promoPrice?:number;
     adultVacancy?: number;
     childrenVacancy?: number;
-    hotel?: Hotel;
+    hotel: Hotel;
     homeAirport?: Airport;
     destinAirport?: Airport;
 
